@@ -2,6 +2,7 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
+sns.set()
 
    
 def plot_confusion_matrix(y_test, y_pred_prob):
@@ -87,3 +88,28 @@ def Plot_Point(X,y,Target,Neighbors, ax=None):
                         loc="upper right", title="Classes")
     ax.scatter(Target[0][0],Target[0][1], s=100, linewidth=1, edgecolors='black', facecolors='black');
     ax.scatter(Neighbors[:,0],Neighbors[:,1], s=200, linewidth=1, edgecolors='black', facecolors='None');
+
+# Create a ECDF graph
+def ecdf(data, plot_ecdf=False, x_label=''):
+    """Compute ECDF for a one-dimensional array of measurements."""
+    # Number of data points: n
+    n = len(data)
+
+    # x-data for the ECDF: x
+    x = np.sort(data)
+
+    # y-data for the ECDF: y
+    y = np.arange(1, n + 1) / n
+
+    if plot_ecdf == True:
+        # Generate plot
+        plt.plot(x, y, marker='.', linestyle='none')
+
+        # Label the axes
+        plt.xlabel('x_label')
+        plt.ylabel('ECDF')
+
+        # Display the plot
+        plt.show()
+
+    return x, y
